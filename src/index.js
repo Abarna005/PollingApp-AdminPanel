@@ -2,12 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+// import Sidebar from './Components/Common/SideNav';
+import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
+import Categories from '../src/Components/Pages/Categorys/index';
+import PrimarySearchAppBar from '../src/Components/Common/AppHeader/index';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+  < BrowserRouter >
+  <App/>
+  </BrowserRouter>
   </React.StrictMode>
 );
 

@@ -44,6 +44,7 @@ export default function PrimarySearchAppBar() {
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'right',
+        
       }}
       id={menuId}
       keepMounted
@@ -113,7 +114,10 @@ export default function PrimarySearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 0 }}>
-      <AppBar position="static" style={{backgroundColor:"#004f83"}}>
+      <AppBar style={{backgroundColor:"#004f83", height: "64px", // Adjust the height as needed
+  position: "sticky",
+  top: 0,
+  zIndex: 1000,}}>
         <Toolbar>
           <Typography
             variant="h6"

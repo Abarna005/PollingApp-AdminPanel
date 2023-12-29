@@ -1,0 +1,100 @@
+import styled from "@emotion/styled";
+import {ColorThemes} from '../../../Themes/colors';
+
+export const ButtonStyles = styled("div")(({ isClicked }) => ({
+  marginTop: "1%",
+
+  ".main-container": {
+    filter: `drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.28))`,
+    backgroundColor: ColorThemes.backgroundColor.whitePrimary,
+    borderRadius: "8px",
+    // width: "80vw",
+    width:"auto",
+  marginLeft: "1%",
+marginRight:"1%",
+padding:"2%",
+    overflowY: "auto",
+    height: "calc(100vh - 100px)",
+    position: "relative",
+  },
+  ".button-container": {
+    marginTop: "5%",
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gap: "35px",
+  },
+  ".category-buttons": {
+    color: "#7C4DFF",
+    backgroundColor: ColorThemes.backgroundColor.whitePrimary,
+    marginLeft: "7%",
+    cursor: "pointer",
+    padding: "30px",
+    width: "20vw",
+    display: "flex",
+    border: "2px solid #004f83",
+    flexDirection: "column",
+    textAlign: "center",
+    borderRadius: "20px",
+    filter: `drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.28))`,
+  },
+  ".Header-Container": {
+    marginRight: "4%",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  ".header-button": {
+    padding: "9px",
+    display: "flex",
+    width: "10vw",
+    border: "2px solid #004f83",
+    flexDirection: "row",
+    alignItems: "center",
+    textAlign: "center",
+    borderRadius: "10px",
+    color:"#004f83",
+    filter: `drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.28))`,
+    "&.active": {
+      backgroundColor: ColorThemes.backgroundColor.MidnightBlue,
+      color: "white",
+      width:"10vw",
+    },
+  },
+  ".button-title": {
+    fontSize: 15,
+    fontWeight: "bold",
+    marginTop:"8%",
+    color:ColorThemes.Font.MidnightBlue,
+  },
+  ".arrow-container": {
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: "2%",
+    cursor: "pointer",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    filter: `drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.28))`,
+    backgroundColor: ColorThemes.backgroundColor.whitePrimary,
+    borderRadius: "18px",
+    width: "2vw",
+  },
+
+  ".overlay": {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "92vw",
+    height: "140vh", // Set the height to 100% of the viewport height
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    zIndex: 1,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  ".category-buttons.selected-category": {
+    backgroundColor:
+      "rgba(0, 0, 0, 0.3)" /* Add your desired blue color here */,
+    opacity: 0.7 /* Add your desired opacity value here */,
+  },
+}));

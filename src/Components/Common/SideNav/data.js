@@ -19,27 +19,17 @@ export const menuItems = [
   },
   {
     icon: <Analytics />,
-    title: "Polls",
-    path: PATH.VIEWPOLL,
+    title: "BlockPolls",
+    path: PATH.BLOCKPOLLS,
   },
   {
     icon: <Folder />,
     title: "Skipped Polls",
-    path: "#",
+    path: PATH.SKIPPEDPOLLS,
   },
   {
     icon: <ShoppingCart />,
     title: "Expired Polls",
-    path: "#",
+    path: PATH.EXPIREDPOLLS,
   },
- 
 ];
-
-
-// export const bottommenuItems = [
-//   {
-//     icon: <Logout />,
-//     title: "Logout",
-//     path: "#",
-//   },
-// ];

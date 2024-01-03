@@ -1,8 +1,10 @@
 export const PATH = {
     LOGIN: "/",
     DASHBOARD: "/dashboard",
-    VIEWPOLL: "/viewpoll",
+    BLOCKPOLLS: "/blockpolls",
     VIEWUSERS: "/viewusers",
     CATEGORIES:"/categories",
+    EXPIREDPOLLS:"/expirepolls",
+    SKIPPEDPOLLS:'/skippedpolls',
   };
   

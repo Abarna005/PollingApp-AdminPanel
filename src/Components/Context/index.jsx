@@ -20,6 +20,7 @@ function NavContextProvider({ children }) {
       value={{
         storeMailId,
         setStoreMailId: setStoreMailId,
+        
       }}
     >
       {children}

@@ -98,7 +98,6 @@ const Sidebar = () => {
         <Box
           sx={{
             // flexGrow: 0,
-            margin:"1px",
             p: 0,
           }}
         >

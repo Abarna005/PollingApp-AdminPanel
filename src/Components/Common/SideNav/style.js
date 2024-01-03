@@ -22,7 +22,7 @@ export const NavStyles = styled("div")`
   }
 
   .sidebar.open {
-    width: 250px;
+    width: 230px;
   }
 
   .sidebar .logo_details {
@@ -142,8 +142,8 @@ export const NavStyles = styled("div")`
   // }
 
   .sidebar.open ~ .home-section {
-    left: 250px;
-    width: calc(100% - 250px);
+    left: 230px;
+    width: calc(100% - 230px);
   }
   .logout-icon {
     position: fixed;

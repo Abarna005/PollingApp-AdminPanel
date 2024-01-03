@@ -157,6 +157,7 @@ export default function Categories() {
         </Container>
         </div>
       </ButtonStyles>
+     
     </div>
   );
 }

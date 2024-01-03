@@ -7,6 +7,7 @@ import ViewUsers from '../Pages/Users/index';
 import BlockPolls from '../Pages/PollsBlock/index';
 import ExpiredPolls from '../Pages/ExpirePolls/index';
 import SkippedPolls from '../Pages/SkippsPolls/index';
+import CategoryRequests from '../Pages/CategoryRequests';
 
 
 export const RouteData = [
@@ -26,6 +27,12 @@ export const RouteData = [
     title: "categories",
     Component: Categories,
     route: PATH.CATEGORIES,
+    isPublic:false,
+  },
+  {
+    title: "categoryrequests",
+    Component: CategoryRequests,
+    route: PATH.CATEGORYREQUESTS,
     isPublic:false,
   },
   {

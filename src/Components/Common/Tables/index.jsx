@@ -15,7 +15,6 @@ const CommonTable = ({ data, columns,height,width }) => {
     return null;
   }
 
-
   return (
     <TableContainer  component={Paper}  style={{msOverflowY:"auto",height:height,width:width}}>
       <Table style={{padding:"1%"}}  stickyHeader >

@@ -5,7 +5,7 @@ import { BlockTableStyles } from './style';
 import StyledButton from '../../Common/Buttons/index';
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import {BlockPollColumns,BlockPollsDatas,AccessButtons} from './data';
+import {BlockPollColumns,BlockPollsDatas} from './data';
 
 export default function BlockPolls({ showButton}) {
   const [showAll, setShowAll] = useState(false);
@@ -18,26 +18,12 @@ export default function BlockPolls({ showButton}) {
          <Typography className='title'>Block Polls
           </Typography>
          </div>
-         <CommonTable height={'auto'}  data={displayedUserData} columns={BlockPollColumns} access={AccessButtons} />
-         
-         {showButton && (
-            <div className='button-container'>
-              <StyledButton
-                textcolor={"white"}
-                fontWeight={'bold'}
-                fontSize={14}
-                letterspacing={1}
-                textTransform={'none'}
-                className={'button-style'}
-              />         
-            </div>
-          )}   
+         <CommonTable height={'auto'}  data={displayedUserData} columns={BlockPollColumns} />
             <div className="arrow-container">
               <IconButton onClick={() => setShowAll(!showAll)} disableTouchRipple={true}>
                 {showAll ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
               </IconButton>
             </div>
- 
          </div>
     </div>
     </ BlockTableStyles >

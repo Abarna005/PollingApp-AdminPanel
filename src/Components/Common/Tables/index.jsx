@@ -17,11 +17,11 @@ const CommonTable = ({ data, columns,height,width }) => {
 
   return (
     <TableContainer  component={Paper}  style={{msOverflowY:"auto",height:height,width:width}}>
-      <Table style={{padding:"1%"}}  stickyHeader >
+      <Table style={{padding:"1%",justifyContent:"space-between"}}  stickyHeader >
         <TableHead>
           <TableRow>
             {columns.map((column) => (
-              <TableCell key={column.id} style={{padding:"1%",fontWeight:"bold",textTransform:"uppercase",color:"#004f83"}}>{column.label}</TableCell>
+              <TableCell key={column.id} style={{padding:"1%",fontWeight:"bold",textTransform:"uppercase",color:"#004f83",textAlign:"center"}}>{column.label}</TableCell>
             ))}
           </TableRow>
         </TableHead>
@@ -29,7 +29,7 @@ const CommonTable = ({ data, columns,height,width }) => {
           {data.map((row) => (
             <TableRow key={row.id}>
               {columns.map((column) => (
-                <TableCell key={column.id} style={{padding:"1%"}}>
+                <TableCell key={column.id} style={{padding:"1%",fontWeight:"bold",fontSize:"15px",textAlign:"center"}}>
                   {row[column.id]}
                 </TableCell>
               ))}

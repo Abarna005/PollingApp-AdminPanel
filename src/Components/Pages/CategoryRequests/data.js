@@ -12,10 +12,10 @@ const handleAccept = (id) => {
   };
 
   const createActionButton = (id, action) => (
-    <div style={{ display: 'flex', alignItems: 'center',marginRight:"17%" }}>
+    <div style={{ display: 'flex', alignItems: 'center',justifyContent:"center"}}>
       <Button
         onClick={() => action(id)}
-        style={{ backgroundColor: action === handleAccept ? 'green' : 'red', color: '#fff', fontWeight: 'bold', padding: '5%', width: '80%', textAlign: 'center',fontSize:"12px" }}
+        style={{ backgroundColor: action === handleAccept ? 'green' : 'red', color: '#fff', fontWeight: 'bold', padding: '5%', width: '5vw', textAlign: 'center',fontSize:"12px" }}
       >
         {action === handleAccept ? 'Accept' : 'Reject'}
       </Button>

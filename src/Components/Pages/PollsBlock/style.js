@@ -17,8 +17,7 @@ padding:"2%",
   },
   ".title":{
     fontWeight:"bold",
-//   marginTop:"1%",
-  fontSize:"15px",
+fontSize:"20px"
   },
   ".button-container":{
     display:"flex",

@@ -22,5 +22,20 @@ export const CatReqStyles = styled("div")(({ isClicked }) => ({
         fontWeight:"bold",
         fontSize:"20px"
       },
+      ".arrow-container": {
+        marginLeft: "auto",
+        marginRight: "auto",
+        marginTop: "2%",
+        cursor: "pointer",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        filter: `drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.28))`,
+        backgroundColor: ColorThemes.backgroundColor.whitePrimary,
+        borderRadius: "100%",
+        width: "2vw",
+        height: "2vw",
+        color: "#7C4DFF",
+      },
   }));
   

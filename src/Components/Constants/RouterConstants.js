@@ -4,6 +4,7 @@ export const PATH = {
     BLOCKPOLLS: "/blockpolls",
     VIEWUSERS: "/viewusers",
     CATEGORIES:"/categories",
+    CATEGORYREQUESTS:"/categoryrequests",
     EXPIREDPOLLS:"/expirepolls",
     SKIPPEDPOLLS:'/skippedpolls',
   };

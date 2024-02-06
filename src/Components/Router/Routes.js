@@ -8,6 +8,7 @@ import BlockPolls from '../Pages/PollsBlock/index';
 import ExpiredPolls from '../Pages/ExpirePolls/index';
 import SkippedPolls from '../Pages/SkippsPolls/index';
 import CategoryRequests from '../Pages/CategoryRequests';
+import ViewReport from '../Pages/ViewReport';
 
 
 export const RouteData = [
@@ -59,4 +60,10 @@ export const RouteData = [
     route: PATH.SKIPPEDPOLLS,
     isPublic:false,
   },
+  {
+    title:'viewreport',
+    Component:ViewReport,
+    route:PATH.VIEWREPORT,
+    isPublic:false,
+  }
 ];

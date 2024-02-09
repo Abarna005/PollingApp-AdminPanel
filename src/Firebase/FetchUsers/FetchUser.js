@@ -1,4 +1,4 @@
-import { onValue, ref } from "firebase/database";
+import { onValue, ref, update } from "firebase/database";
 import { db } from "../../Firebase";
 
 export const FetchUsers = async () => {
@@ -23,5 +23,16 @@ export const FetchUsers = async () => {
     return users;
   } catch (e) {
     console.log("Error fetching users", e);
+  }
+};
+
+export const BlockUser = async (uid) => {
+  try {
+    const blockuser = {};
+    blockuser[`USER/${uid}/block`] = true;
+    await update(ref(db), blockuser);
+    return "User Blocked!";
+  } catch (error) {
+    console.log("Error blocking user", error);
   }
 };

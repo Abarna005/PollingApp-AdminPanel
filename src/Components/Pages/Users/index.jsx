@@ -21,23 +21,37 @@ import {
   getHoverBorderColorForIndex,
 } from "./data";
 import { Container } from "react-bootstrap";
-import { FetchUsers } from "../../../Firebase/FetchUsers/FetchUser";
+import { BlockUser, FetchUsers } from "../../../Firebase/FetchUsers/FetchUser";
 
 const ViewUsers = () => {
   const [showAll, setShowAll] = useState(false);
-  const [userdatafromdb, setUserdatafromdb] = useState([]);
+  const [userDatafromdb, setUserDatafromdb] = useState([]);
 
-  const displayedUserData = showAll ? userDataArray : userDataArray.slice(0, 6);
-
-  const fetchUsers = async () => {
-    const users = await FetchUsers();
-    console.log(users);
-    setUserdatafromdb(users);
+  const getUserData = async () => {
+    const userdata = await FetchUsers();
+    console.log(userdata);
+    const userobject = userdata.map((udata) => ({
+      picture: udata.picture ? (
+        udata.picture
+      ) : (
+        <AccountCircleIcon className="IconStyle" />
+      ),
+      username: udata.name,
+      postName: "Web Developer",
+      date: "15, June",
+      uid: udata.uid,
+    }));
+    console.log("------------", userobject);
+    setUserDatafromdb(userobject);
   };
 
   useEffect(() => {
-    fetchUsers();
+    getUserData();
   }, []);
+
+  const displayedUserData = showAll
+    ? userDatafromdb
+    : userDatafromdb.slice(0, 6);
 
   return (
     <ViewUserStyles>
@@ -49,37 +63,37 @@ const ViewUsers = () => {
               <TableHead className="table-title">
                 <TableRow>
                   <TableCell className="RowTitle">PROFILE</TableCell>
-                  <TableCell className="RowTitle">USERNAMES</TableCell>
-                  <TableCell className="RowTitle">POST NAMES</TableCell>
-                  <TableCell className="RowTitle">DATE</TableCell>
+                  <TableCell className="RowTitle">USERNAME</TableCell>
+                  {/* <TableCell className="RowTitle">POST NAME</TableCell>
+                  <TableCell className="RowTitle">DATE</TableCell> */}
                   <TableCell className="access-cell">ACCESS</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {/* {displayedUserData.map((userData, index) => ( */}
-                {userdatafromdb.map((userData, index) => (
+                {displayedUserData.map((userData, index) => (
                   <TableRow key={index}>
                     <TableCell className="tabledata-row">
-                      {/* <AccountCircleIcon className="IconStyle" /> */}
-                      <img
-                        src={userData.picture}
-                        alt=""
-                        height={40}
-                        width={40}
-                        style={{ borderRadius: "50%" }}
-                      />
+                      {typeof userData.picture === "string" ? (
+                        <img
+                          src={userData.picture}
+                          alt=""
+                          height={40}
+                          width={40}
+                          style={{ borderRadius: "50%" }}
+                        />
+                      ) : (
+                        userData.picture
+                      )}
                     </TableCell>
                     <TableCell className="tabledata-row">
-                      {userData.name}
+                      {userData.username}
+                    </TableCell>
+                    {/* <TableCell className="tabledata-row">
+                      {userData.postName}
                     </TableCell>
                     <TableCell className="tabledata-row">
-                      {/* {userData.postName} */}
-                      sports
-                    </TableCell>
-                    <TableCell className="tabledata-row">
-                      {/* {userData.date} */}
-                      15,June
-                    </TableCell>
+                      {userData.date}
+                    </TableCell> */}
                     <TableCell className="tabledata-row">
                       <div className="inline-access-cell">
                         {AccessButtons.map((userAccess, buttonIndex) => (
@@ -90,6 +104,14 @@ const ViewUsers = () => {
                             textcolor={getTextColorForIndex(buttonIndex)}
                             fontSize={12}
                             letterspacing={1}
+                            onClick={
+                              userAccess.word === "Block"
+                                ? async () => {
+                                  const blockuser = await BlockUser(userData.uid);
+                                  console.log(blockuser);
+                                }
+                                : () => {}
+                            }
                             // disableTouchRipple={true}
                             sx={{
                               backgroundColor: getColorForIndex(buttonIndex),
@@ -115,18 +137,16 @@ const ViewUsers = () => {
                 ))}
               </TableBody>
             </Table>
-            {userdatafromdb.length > 5 && (
-              <div className="arrow-container">
-                {userdatafromdb.length > 6 && (
-                  <StyledButton
-                    onClick={() => setShowAll(!showAll)}
-                    disableTouchRipple={true}
-                  >
-                    {showAll ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
-                  </StyledButton>
-                )}
-              </div>
-            )}
+            <div className="arrow-container">
+              {userDataArray.length > 6 && (
+                <StyledButton
+                  onClick={() => setShowAll(!showAll)}
+                  disableTouchRipple={true}
+                >
+                  {showAll ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+                </StyledButton>
+              )}
+            </div>
           </TableContainer>
         </Container>
       </div>

@@ -37,10 +37,11 @@ export const ViewReportStyles = styled("div")(({ theme }) => ({
   },
   ".usertypo": {
     fontWeight: "bold",
+    margin:'auto .4vw'
   },
   ".categorytypo": {
     paddingLeft: ".2vw",
-    paddingTop: ".4vh",
+    paddingTop: "1vh",
     fontStyle: "italic",
     fontWeight: 500,
   },
@@ -52,5 +53,14 @@ export const ViewReportStyles = styled("div")(({ theme }) => ({
   ".reporttypo": {
     fontWeight: 525,
     fontSize: ".9rem",
+    margin:'1vh 0'
   },
+  '.reportprofile':{
+    borderRadius:'50%'
+  },
+  '.infotext':{
+    display:'flex',
+    justifyContent:'space-between',
+    padding:'.5vh 1vw',
+  }
 }));

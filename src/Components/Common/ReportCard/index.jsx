@@ -7,15 +7,21 @@ export default function ReportCard({ msg }) {
     <ReportCardStyles>
       <Card msg={msg} className="card">
         <Box>
-          {msg.profilePic}
-          <Typography
-            className="uname"
-            variant="caption"
-          >
-            {msg.uname}
+          {typeof msg.profile === "string" ? (
+            <img src={msg.profile} alt="" height={40} width={40} className="userimages" />
+          ) : (
+            msg.profile
+          )}
+          <Typography className="uname" variant="caption">
+            {msg.name}
           </Typography>
         </Box>
-        <Typography className="messsagetypo">{msg.msg}</Typography>
+        <Typography className="messsagetypo">{msg.report}</Typography>
+        {msg.reportText && (
+          <Typography variant="caption" className="reportText">
+            {msg.reportText}
+          </Typography>
+        )}
       </Card>
     </ReportCardStyles>
   );

@@ -14,7 +14,15 @@ export const ReportCardStyles = styled("div")(({ theme }) => ({
     paddingLeft:'.5vw'
   },
   ".messsagetypo":{
-    padding:'.8vw 0 .5vw 1.5vw'
-
+    padding:'.8vw 0 .5vw 1vw',
+    fontWeight:500,
+    fontStyle:'italic'
+  },
+  ".userimages":{
+    borderRadius:'50%'
+  },
+  '.reportText':{
+    fontSize:'.8rem',
+    paddingLeft:'2vw'
   }
 }));

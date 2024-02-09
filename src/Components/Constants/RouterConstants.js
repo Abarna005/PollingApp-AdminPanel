@@ -7,6 +7,6 @@ export const PATH = {
     CATEGORYREQUESTS:"/categoryrequests",
     EXPIREDPOLLS:"/expirepolls",
     SKIPPEDPOLLS:'/skippedpolls',
-    VIEWREPORT:'/viewreport/:key',
+    VIEWREPORT:'/viewreport/:poll_id',
   };
   

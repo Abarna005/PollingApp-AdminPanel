@@ -51,7 +51,7 @@ const ViewUsers = () => {
 
   const displayedUserData = showAll
     ? userDatafromdb
-    : userDatafromdb.slice(0, 6);
+    : userDatafromdb.slice(0, 5);
 
   return (
     <ViewUserStyles>
@@ -138,7 +138,7 @@ const ViewUsers = () => {
               </TableBody>
             </Table>
             <div className="arrow-container">
-              {userDataArray.length > 6 && (
+              {userDataArray.length > 5 && (
                 <StyledButton
                   onClick={() => setShowAll(!showAll)}
                   disableTouchRipple={true}

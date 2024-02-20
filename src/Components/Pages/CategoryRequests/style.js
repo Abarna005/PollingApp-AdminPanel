@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import {ColorThemes} from '../../../Themes/colors';
 
 export const CatReqStyles = styled("div")(({ isClicked }) => ({
-    marginTop: "1%",
+    // marginTop: "1%",
     ".main-container": {
       filter: `drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.28))`,
       backgroundColor: ColorThemes.backgroundColor.whitePrimary,
@@ -15,9 +15,9 @@ export const CatReqStyles = styled("div")(({ isClicked }) => ({
       height: "calc(100vh - 100px)",
       position: "relative",
     },
-    ".tablewrapper ":{
-        overflowY: "auto",
-      },
+    // ".tablewrapper ":{
+    //     overflowY: "auto",
+    //   },
       ".title": {
         fontWeight:"bold",
         fontSize:"20px"

@@ -16,9 +16,8 @@ export default function BlockPolls({ showButton }) {
   // const [reportedPolls, setReportedPolls] = useState([]);
   const {reportedPolls,setReportedPolls}=useContext(NavContext);
 
-  const displayedUserData = showAll
-    ? BlockPollsDatas
-    : BlockPollsDatas.slice(0, 6);
+  const displayedUserData = showAll ? reportedPolls : reportedPolls.slice(0, 6);
+  // const displayedUserData = showAll ? BlockPollsDatas : BlockPollsDatas.slice(0, 6);
 
   const handleReject = (id) => {
     // Implement the logic for rejecting the request
@@ -69,7 +68,6 @@ export default function BlockPolls({ showButton }) {
 
   useEffect(() => {
     getReportedPolls();
-    console.log(BlockPollsDatas);
   }, []);
 
   return (
@@ -81,11 +79,15 @@ export default function BlockPolls({ showButton }) {
           </div>
           <CommonTable
             height={"auto"}
-            // data={displayedUserData}
-            data={reportedPolls}
+            data={displayedUserData}
             columns={BlockPollColumns}
           />
-          {reportedPolls.length > 6 && (
+          <div className="arrow-container">
+            <IconButton onClick={() => setShowAll(!showAll)} disableTouchRipple={true}>
+              {showAll ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+            </IconButton>
+          </div>
+          {/* {displayedUserData.length > 6 && (
             <div className="arrow-container">
               <IconButton
                 onClick={() => setShowAll(!showAll)}
@@ -94,7 +96,7 @@ export default function BlockPolls({ showButton }) {
                 {showAll ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
               </IconButton>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </BlockTableStyles>

@@ -61,6 +61,8 @@ export default function Dashboard() {
               backgroundColor: "white",
               marginTop: "2%",
               padding: "2%",
+              maxHeight:'81dvh',
+              overflow:'auto'
             }}
           >
             <div

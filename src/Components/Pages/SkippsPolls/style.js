@@ -4,7 +4,7 @@ import {ColorThemes} from '../../../Themes/colors';
 
 export const SkipTableStyles = styled("div")(({ theme }) => ({
 padding:"2%",
-  marginTop:"2%",
+  // marginTop:"2%",
   ".contianer": {
     filter: `drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.28))`,
     borderRadius:"10px",
@@ -13,8 +13,8 @@ padding:"2%",
     //  marginTop:"1%",
     width:"auto",
     // width:"80vw", 
-    overflowY:"auto",
-    height:"auto",
+    maxHeight:'81dvh',
+    overflow:'auto'
   },
   ".title":{
     fontWeight:"bold",

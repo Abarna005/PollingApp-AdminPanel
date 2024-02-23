@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { BlockPollsDatas } from "../PollsBlock/data";
 import { Box, Button, Typography } from "@mui/material";
 import ReportCard from "../../Common/ReportCard";
@@ -15,10 +15,10 @@ export default function ViewReport() {
   const userdetails = reportedPolls.find((obj) => obj.id === id);
   console.log(userdetails);
 
-  const BlockPoll=async()=>{
-    const block=await UpdateReport(userdetails.postnames,userdetails.id);
+  const BlockPoll = async () => {
+    const block = await UpdateReport(userdetails.postnames, userdetails.id);
     console.log(block);
-  }
+  };
 
   return (
     <ViewReportStyles>
@@ -49,20 +49,24 @@ export default function ViewReport() {
             <Box className="buttonbox">
               <Button
                 className="action-button"
-                onClick={()=>{BlockPoll()}}
+                onClick={() => {
+                  BlockPoll();
+                }}
               >
                 Block
               </Button>
-              <Button
-                className="action-button"
-                // onClick={() => action(id)}
-                style={{
-                  backgroundColor: "#ccc",
-                  color: "#444",
-                }}
-              >
-                Cancel
-              </Button>
+              <Link to={"/blockpolls"} style={{textDecoration:'none'}}>
+                <Button
+                  className="action-button"
+                  // onClick={() => action(id)}
+                  style={{
+                    backgroundColor: "#ccc",
+                    color: "#444",
+                  }}
+                >
+                  Cancel
+                </Button>
+              </Link>
             </Box>
           </Col>
         </Row>

@@ -62,7 +62,7 @@ const StyledPopUpBox = styled("div")`
   }
 `;
 
-export default function BasicDemo({RemoveCategory,catId}) {
+export default function BasicDemo({RemoveCategory,catName,catIcon}) {
   const toast = React.useRef(null);
   const [open, setOpen] = useState(false);
 
@@ -72,7 +72,7 @@ export default function BasicDemo({RemoveCategory,catId}) {
 
   const handleConfirm = () => {
      if (RemoveCategory) {
-       RemoveCategory(catId);
+       RemoveCategory(catName,catIcon);
      }
 
     toast.current.show({
@@ -135,7 +135,7 @@ export default function BasicDemo({RemoveCategory,catId}) {
           }}
         >
           <RemoveCircleOutlineIcon
-            style={{ position: "absolute", bottom: "3", left: "100%", color:"#7c4dff" }}
+            style={{ position: "absolute", bottom: "3", left: "100%", color:"#004f83" }}
             fontSize="100px"
           />
         </div>

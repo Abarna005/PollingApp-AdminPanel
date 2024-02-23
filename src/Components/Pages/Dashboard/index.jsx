@@ -17,31 +17,64 @@ import { Typography } from "@mui/material";
 import StyledButton from "../../Common/Buttons";
 import { FetchRecentPoll } from "../../../Firebase/FetchRecentPolls/FetchRecentPoll";
 import { AccountCircle } from "@mui/icons-material";
+import { FetchExpiredPolls } from "../../../Firebase/ExpiredPolls/FetchExpiredPoll";
 
 export default function Dashboard() {
   const [recentpoll, setRecentpoll] = useState([]);
+  const [expiredpoll, setExpiredpoll] = useState([]);
 
+  // recent polls
   const fetchrecent = async () => {
     const rpolls = await FetchRecentPoll();
     console.log(rpolls);
-    const robj = rpolls.filter(item=>item!==null).map((rp, index) => {
-      const time = new Date(rp.timestamp);
+    const robj = rpolls
+      .filter((item) => item !== null)
+      .map((rp, index) => {
+        const time = new Date(rp.timestamp);
+        return {
+          id: index + 1,
+          profiles: rp.profilePic ? rp.profilePic : <AccountCircle />,
+          usernames: rp.name,
+          postnames: rp.categoryType,
+          dates: time.toLocaleDateString("en-US", {
+            day: "numeric",
+            month: "short",
+          }),
+        };
+      });
+    console.log("robj", robj);
+    setRecentpoll(robj);
+  };
+
+  // expired polls
+  const fetchexpired = async () => {
+    const expired = await FetchExpiredPolls();
+    const eobj = expired.map((ep, index) => {
+      const time = new Date(ep.expiryDate);
       return {
         id: index + 1,
-        profiles: rp.profilePic ? rp.profilePic : <AccountCircle />,
-        usernames: rp.name,
-        postnames: rp.categoryType,
-        dates: time.toLocaleDateString("en-US", {
+        profiles: ep.profilePic ? ep.profilePic : <AccountCircle />,
+        username: ep.name,
+        postname: ep.categoryType,
+        question: ep.question,
+        date: time.toLocaleDateString("en-US", {
           day: "numeric",
           month: "short",
         }),
       };
     });
-    console.log("robj", robj);
-    setRecentpoll(robj);
+    eobj.sort((a, b) => {
+      const dA = new Date(a.date);
+      const dB = new Date(b.date);
+      return dB - dA;
+    });
+    console.log(eobj);
+    setExpiredpoll(eobj);
   };
+
   useEffect(() => {
     fetchrecent();
+    fetchexpired();
   }, []);
 
   return (
@@ -61,8 +94,8 @@ export default function Dashboard() {
               backgroundColor: "white",
               marginTop: "2%",
               padding: "2%",
-              maxHeight:'81dvh',
-              overflow:'auto'
+              maxHeight: "81dvh",
+              overflow: "auto",
             }}
           >
             <div
@@ -100,12 +133,15 @@ export default function Dashboard() {
                     <Typography className="title">{"Expired polls"}</Typography>
                   </div>
                   <CommonTable
-                    data={ExpirePollsDatas.slice(0, 3)}
+                    data={expiredpoll.slice(0, 3)}
                     columns={ExpireColumns}
                   />
                   <div>
                     <div className="button-container">
-                      <Link to="/expirepolls" style={{textDecoration:'none'}}>
+                      <Link
+                        to="/expirepolls"
+                        style={{ textDecoration: "none" }}
+                      >
                         <StyledButton
                           className={"button-styles"}
                           title={"View More"}
@@ -136,11 +172,14 @@ export default function Dashboard() {
                   </div>
                   <CommonTable
                     data={SkippPollsDatas.slice(0, 3)}
-                    columns={ExpireColumns}
+                    columns={SkippColumns}
                   />
                   <div>
                     <div className="button-container">
-                      <Link to="/skippedpolls" style={{textDecoration:'none'}}>
+                      <Link
+                        to="/skippedpolls"
+                        style={{ textDecoration: "none" }}
+                      >
                         <StyledButton
                           className={"button-styles"}
                           title={"View More"}

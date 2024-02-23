@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { CategoriesStyles } from "./style";
-import StyledButton from '../../../Common/Buttons/index';
+import StyledButton from "../../../Common/Buttons/index";
 import HighlightOffOutlinedIcon from "@mui/icons-material/HighlightOffOutlined";
 import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
 import { TextField, Typography } from "@mui/material";
 import { ColorThemes } from "../../../../Themes/colors";
+import { InsertCategory } from "../../../../Firebase/AddCategory/AddCategory";
 
-export default function AddCat({ onClose, onAddCategory }) {
+export default function AddCat({ onClose, fetchCategories }) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [categoryName, setCategoryName] = useState("");
@@ -34,7 +35,7 @@ export default function AddCat({ onClose, onAddCategory }) {
     document.getElementById("fileInput").click();
   };
 
-  const handleAddButtonClick = () => {
+  const handleAddButtonClick = async () => {
     if (!categoryName && !selectedFile) {
       setError("Please enter a category name and upload an image.");
     } else if (!categoryName) {
@@ -43,7 +44,12 @@ export default function AddCat({ onClose, onAddCategory }) {
       setError("Please upload an image.");
     } else {
       setError("");
-      onAddCategory({ word: categoryName, iconName: imagePreview }); 
+      const addcategory = await InsertCategory({
+        image: selectedFile,
+        name: categoryName,
+      }).then(() => {
+        fetchCategories();
+      });
       onClose();
     }
   };
@@ -67,7 +73,11 @@ export default function AddCat({ onClose, onAddCategory }) {
                   }}
                 >
                   <StyledButton
-                    endIcon={<HighlightOffOutlinedIcon sx={{color:ColorThemes.Font.MidnightBlue}}/>}
+                    endIcon={
+                      <HighlightOffOutlinedIcon
+                        sx={{ color: ColorThemes.Font.MidnightBlue }}
+                      />
+                    }
                     disableTouchRipple={true}
                     onClick={handleCancelButtonClick}
                   />
@@ -75,38 +85,48 @@ export default function AddCat({ onClose, onAddCategory }) {
                 <div>
                   <Typography className="title">Add Category</Typography>
                 </div>
-                <input
-                  type="file"
-                  style={{ display: "none" }}
-                  onChange={handleFileChange}
-                  id="fileInput"
-                />
-                <div
-                  className="image-container"
-                  style={{
-                    backgroundImage: imagePreview
-                      ? `url(${imagePreview})`
-                      : "none",
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    width: "12vw",
-                    height: "100px",
-                  }}
+                <label
+                  htmlFor="fileInput"
+                  style={{ margin: 0, padding: 0, display: "block" }}
                 >
-                  <div className="icon-container">
-                    {!imagePreview && (
-                      <StyledButton
-                        startIcon={<AddAPhotoOutlinedIcon sx={{color:ColorThemes.Font.MidnightBlue}}/>}
-                        title={"Upload Images"}
-                        textcolor={"gray"}
-                        fontSize={10}
-                        fontWeight={"bold"}
-                        onClick={handleUploadButtonClick}
-                      />
-                    )}
+                  <div
+                    className="image-container"
+                    style={{
+                      backgroundImage: imagePreview
+                        ? `url(${imagePreview})`
+                        : "none",
+                      backgroundRepeat: "no-repeat",
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      width: "12vw",
+                      height: "100px",
+                    }}
+                  >
+                    <div className="icon-container">
+                      {!imagePreview && (
+                        <StyledButton
+                          startIcon={
+                            <AddAPhotoOutlinedIcon
+                              sx={{ color: ColorThemes.Font.MidnightBlue }}
+                            />
+                          }
+                          title={"Upload Images"}
+                          textcolor={"gray"}
+                          fontSize={10}
+                          fontWeight={"bold"}
+                          onClick={handleUploadButtonClick}
+                        />
+                      )}
+                    </div>
                   </div>
-                </div>
+                  <input
+                    type="file"
+                    style={{ display: "none" }}
+                    onChange={handleFileChange}
+                    id="fileInput"
+                    accept="image/*"
+                  />
+                </label>
                 <div style={{ width: "100%", textAlign: "right" }}>
                   <TextField
                     className="text-input"

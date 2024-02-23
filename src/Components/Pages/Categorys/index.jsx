@@ -15,6 +15,8 @@ import {
   CreateOutlined,
   RemoveCircleOutline,
 } from "@mui/icons-material";
+import { RemoveCategoryindb } from "../../../Firebase/RemoveCategory/RemoveCategory";
+import { EditCategory } from "../../../Firebase/EditCategory/EditCategory";
 
 export default function Categories() {
   const [isUpdateClicked, setIsUpdateClicked] = useState(false);
@@ -38,7 +40,7 @@ export default function Categories() {
       iconName: c.image,
     }));
     console.log(catobj);
-    setCategories(catobj)
+    setCategories(catobj);
   };
 
   useEffect(() => {
@@ -59,32 +61,17 @@ export default function Categories() {
     setIsRemoveClicked(!isRemoveClicked);
   };
 
-  const handleCategoryUpdate = (updatedCategory) => {
-    setCategories((prevCategories) =>
-      prevCategories.map((category) =>
-        category.id === updatedCategory.id ? updatedCategory : category
-      )
-    );
+  const handleCategoryUpdate = async (updatedCategory) => {
+    const editcat = await EditCategory(updatedCategory).then(()=>{
+      fetchCategories();
+    });
   };
 
-  const handleAddCategory = (newCategory) => {
-    // Create a new category with a unique ID
-    const newCategoryWithId = {
-      ...newCategory,
-      id: new Date().getTime(),
-    };
 
-    // Update the state with the new category added to the beginning of the array
-    setCategories((prevCategories) => [newCategoryWithId, ...prevCategories]);
-  };
-
-  const RemoveCategory = (catId) => {
-    console.log("Removing category with ID:", catId);
-    const updatedCategories = categories.filter(
-      (category) => category.id !== catId
-    );
-    setCategories(updatedCategories);
-    console.log("Updated categories:", updatedCategories);
+  const RemoveCategory = async (catName,catIcon) => {
+    const removecat = await RemoveCategoryindb(catName,catIcon).then(()=>{
+      fetchCategories();
+    });
   };
 
   return (
@@ -116,7 +103,8 @@ export default function Categories() {
                         <BasicDemo
                           onClose={() => setIsRemoveClicked(false)}
                           index={index}
-                          catId={category.id}
+                          catName={category.word}
+                          catIcon={category.iconName}
                           RemoveCategory={RemoveCategory}
                           categories={categories} // Pass the categories state
                         />
@@ -156,7 +144,7 @@ export default function Categories() {
               <div className="overlay" onClick={(e) => e.stopPropagation()}>
                 <AddCat
                   onClose={handleToggleAddCategories}
-                  onAddCategory={handleAddCategory}
+                  fetchCategories={fetchCategories}
                 />
               </div>
             )}

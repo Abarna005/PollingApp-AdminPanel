@@ -4,12 +4,15 @@ import { createContext } from "react";
 export const NavContext = createContext({
   storeMailId: "",
   setStoreMailId: () => {},
+  reportedPolls:[],
+  setReportedpolls:()=>{},
 });
 
 function NavContextProvider({ children }) {
   const [storeMailId, setStoreMailId] = useState(
     localStorage.getItem("mailId")
   );
+  const [reportedPolls, setReportedPolls] = useState([]);
 
   useEffect(() => {}, []);
   useEffect(() => {
@@ -20,7 +23,8 @@ function NavContextProvider({ children }) {
       value={{
         storeMailId,
         setStoreMailId: setStoreMailId,
-        
+        reportedPolls,
+        setReportedPolls
       }}
     >
       {children}

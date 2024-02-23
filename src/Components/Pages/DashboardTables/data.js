@@ -4,7 +4,7 @@ export  const Recentcolumns = [
   { id: 'profiles', label: 'Profiles' },
   { id: 'usernames', label: 'User names' },
   { id: 'postnames', label: 'Post names' },
-  { id: 'dates', label: 'Dates' },
+  { id: 'dates', label: 'Date' },
 ];
 
 export const RecentPollsDatas = [
@@ -24,7 +24,7 @@ export const RecentPollsDatas = [
     { id: 'profiles', label: 'Profiles' },
     { id: 'usernames', label: 'User names' },
     { id: 'postnames', label: 'Post names' },
-    { id: 'dates', label: 'Dates' },
+    { id: 'dates', label: 'Date' },
   ];
 
   export const PopularPollsDatas = [

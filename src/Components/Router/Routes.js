@@ -55,12 +55,6 @@ export const RouteData = [
     isPublic:false,
   },
   {
-    title: "skippedpolls",
-    Component:SkippedPolls,
-    route: PATH.SKIPPEDPOLLS,
-    isPublic:false,
-  },
-  {
     title:'viewreport',
     Component:ViewReport,
     route:PATH.VIEWREPORT,

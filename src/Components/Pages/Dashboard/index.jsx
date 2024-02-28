@@ -18,10 +18,12 @@ import StyledButton from "../../Common/Buttons";
 import { FetchRecentPoll } from "../../../Firebase/FetchRecentPolls/FetchRecentPoll";
 import { AccountCircle } from "@mui/icons-material";
 import { FetchExpiredPolls } from "../../../Firebase/ExpiredPolls/FetchExpiredPoll";
+import { FetchPopular } from "../../../Firebase/FetchPopularPolls/FetchPopularPoll";
 
 export default function Dashboard() {
   const [recentpoll, setRecentpoll] = useState([]);
   const [expiredpoll, setExpiredpoll] = useState([]);
+  const [popularpoll, setPopularpoll] = useState([]);
 
   // recent polls
   const fetchrecent = async () => {
@@ -72,9 +74,31 @@ export default function Dashboard() {
     setExpiredpoll(eobj);
   };
 
+  // popularpolls
+  const fetchpopularpolls = async () => {
+    const popularpolls = await FetchPopular();
+    console.log(popularpolls);
+
+    const pobj = popularpolls.map((pp, index) => {
+      const time = new Date(pp.timestamp);
+      return {
+        id: index + 1,
+        profiles: pp.profilePic ? pp.profilePic : <AccountCircle />,
+        usernames: pp.name,
+        postnames: pp.categoryType,
+        dates: time.toLocaleDateString("en-US", {
+          day: "numeric",
+          month: "short",
+        }),
+      };
+    });
+    setPopularpoll(pobj);
+  };
+
   useEffect(() => {
     fetchrecent();
     fetchexpired();
+    fetchpopularpolls();
   }, []);
 
   return (
@@ -115,7 +139,7 @@ export default function Dashboard() {
               />
               <DashboardTables
                 title="Popular Polls"
-                data={PopularPollsDatas}
+                data={popularpoll}
                 columns={PopularColumns}
               />
             </div>
@@ -135,6 +159,7 @@ export default function Dashboard() {
                   <CommonTable
                     data={expiredpoll.slice(0, 3)}
                     columns={ExpireColumns}
+                    maxWidth="215px"
                   />
                   <div>
                     <div className="button-container">
@@ -149,44 +174,6 @@ export default function Dashboard() {
                           fontSize={12}
                           textcolor={"white"}
                           letterspacing={2}
-                          fontWeight={"bold"}
-                        />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ExpireTableStyles>
-            {/* skipped polls */}
-            <ExpireTableStyles>
-              <div
-                style={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                  display: "flex",
-                }}
-              >
-                <div className="contianer" style={{ width: "77vw" }}>
-                  <div style={{ marginBottom: "3%" }}>
-                    <Typography className="title">{"Skipped polls"}</Typography>
-                  </div>
-                  <CommonTable
-                    data={SkippPollsDatas.slice(0, 3)}
-                    columns={SkippColumns}
-                  />
-                  <div>
-                    <div className="button-container">
-                      <Link
-                        to="/skippedpolls"
-                        style={{ textDecoration: "none" }}
-                      >
-                        <StyledButton
-                          className={"button-styles"}
-                          title={"View More"}
-                          textTransform={"none"}
-                          fontSize={12}
-                          letterspacing={2}
-                          textcolor={"white"}
                           fontWeight={"bold"}
                         />
                       </Link>

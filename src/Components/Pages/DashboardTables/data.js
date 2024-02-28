@@ -1,9 +1,9 @@
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 export  const Recentcolumns = [
-  { id: 'profiles', label: 'Profiles' },
-  { id: 'usernames', label: 'User names' },
-  { id: 'postnames', label: 'Post names' },
+  { id: 'profiles', label: 'Profile' },
+  { id: 'usernames', label: 'User name' },
+  { id: 'postnames', label: 'Category' },
   { id: 'dates', label: 'Date' },
 ];
 
@@ -21,9 +21,9 @@ export const RecentPollsDatas = [
   ];
   
   export  const PopularColumns = [
-    { id: 'profiles', label: 'Profiles' },
-    { id: 'usernames', label: 'User names' },
-    { id: 'postnames', label: 'Post names' },
+    { id: 'profiles', label: 'Profile' },
+    { id: 'usernames', label: 'User name' },
+    { id: 'postnames', label: 'Category' },
     { id: 'dates', label: 'Date' },
   ];
 

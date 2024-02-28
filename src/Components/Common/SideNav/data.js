@@ -23,11 +23,6 @@ export const menuItems = [
     path: PATH.BLOCKPOLLS,
   },
   {
-    icon: <Folder />,
-    title: "Skipped Polls",
-    path: PATH.SKIPPEDPOLLS,
-  },
-  {
     icon: <ShoppingCart />,
     title: "Expired Polls",
     path: PATH.EXPIREDPOLLS,

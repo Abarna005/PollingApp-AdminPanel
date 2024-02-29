@@ -13,7 +13,7 @@ export const ViewUserStyles = styled("div")(({ theme }) => ({
     marginRight: "1%",
     padding: "1%",
     position: "relative",
-    maxHeight:'85dvh',
+    maxHeight: "85dvh",
     overflow: "auto",
   },
   ".Container": {
@@ -71,5 +71,13 @@ export const ViewUserStyles = styled("div")(({ theme }) => ({
     width: "2vw",
     height: "2vw",
     color: "#7C4DFF",
+  },
+  ".noreq-box": {
+    display: "flex",
+    justifyContent: "center",
+    padding: "2rem",
+  },
+  ".noreq-typo": {
+    fontSize: ".8rem",
   },
 }));

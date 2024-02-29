@@ -8,7 +8,14 @@ export default function ReportCard({ msg }) {
       <Card msg={msg} className="card">
         <Box>
           {typeof msg.profile === "string" ? (
-            <img src={msg.profile} alt="" height={40} width={40} className="userimages" />
+            <img
+              src={msg.profile}
+              alt=""
+              height={40}
+              width={40}
+              className="userimages"
+              referrerPolicy="no-referrer"
+            />
           ) : (
             msg.profile
           )}

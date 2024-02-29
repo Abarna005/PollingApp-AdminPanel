@@ -6,7 +6,7 @@ export const ExpireColumns = [
     {id:'username',label:'User name'},
     {id:'postname',label:'Category'},
     {id:'question',label:'Question'},
-    {id:'date',label:'Expire date'},
+    {id:'date',label:'Expiry date'},
   ];
 
   export const ExpirePollsDatas = [

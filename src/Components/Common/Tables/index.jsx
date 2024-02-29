@@ -9,7 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-const CommonTable = ({ data, columns, height, width,maxWidth }) => {
+const CommonTable = ({ data, columns, height, width, maxWidth }) => {
   if (!data || !Array.isArray(data)) {
     // Handle the case where data is not defined or not an array
     return null;
@@ -53,11 +53,19 @@ const CommonTable = ({ data, columns, height, width,maxWidth }) => {
                     fontWeight: "bold",
                     fontSize: "15px",
                     textAlign: "center",
-                    maxWidth:maxWidth
+                    maxWidth: maxWidth,
                   }}
                 >
-                  {(column.id === "profiles"&&typeof(row[column.id])==="string") ? (
-                    <img src={row[column.id]} alt="" height={25} width={25} style={{borderRadius:'50%'}} />
+                  {column.id === "profiles" &&
+                  typeof row[column.id] === "string" ? (
+                    <img
+                      src={row[column.id]}
+                      alt=""
+                      height={25}
+                      width={25}
+                      style={{ borderRadius: "50%" }}
+                      referrerPolicy="no-referrer"
+                    />
                   ) : (
                     row[column.id]
                   )}

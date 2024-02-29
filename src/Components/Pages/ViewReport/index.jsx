@@ -33,6 +33,7 @@ export default function ViewReport() {
                   height={45}
                   width={45}
                   className="reportprofile"
+                  referrerPolicy="no-referrer"
                 />
               ) : (
                 userdetails.profiles
@@ -55,7 +56,7 @@ export default function ViewReport() {
               >
                 Block
               </Button>
-              <Link to={"/blockpolls"} style={{textDecoration:'none'}}>
+              <Link to={"/blockpolls"} style={{ textDecoration: "none" }}>
                 <Button
                   className="action-button"
                   // onClick={() => action(id)}

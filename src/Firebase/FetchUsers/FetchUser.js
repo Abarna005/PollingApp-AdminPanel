@@ -3,14 +3,14 @@ import { db } from "../../Firebase";
 
 export const FetchUsers = async () => {
   try {
-    const snapshot = ref(db, "USER");
+    const snapshot = ref(db, "PostAccessRequests");
     const users = await new Promise((resolve) => {
       onValue(snapshot, (userdata) => {
-        if (!userdata) {
+        if (!userdata.exists()) {
           resolve([]);
         } else {
           const userPromises = Object.entries(userdata.val()).map(
-            async (data, index) => {
+            async (data) => {
               return data[1];
             }
           );
@@ -23,16 +23,5 @@ export const FetchUsers = async () => {
     return users;
   } catch (e) {
     console.log("Error fetching users", e);
-  }
-};
-
-export const BlockUser = async (uid) => {
-  try {
-    const blockuser = {};
-    blockuser[`USER/${uid}/block`] = true;
-    await update(ref(db), blockuser);
-    return "User Blocked!";
-  } catch (error) {
-    console.log("Error blocking user", error);
   }
 };

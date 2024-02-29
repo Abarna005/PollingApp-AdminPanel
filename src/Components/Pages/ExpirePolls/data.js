@@ -4,9 +4,9 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 export const ExpireColumns = [
     {id:'profiles',label:'Profile'},
     {id:'username',label:'User name'},
-    {id:'postname',label:'Post name'},
+    {id:'postname',label:'Category'},
     {id:'question',label:'Question'},
-    {id:'date',label:'Expire date'},
+    {id:'date',label:'Expiry date'},
   ];
 
   export const ExpirePollsDatas = [

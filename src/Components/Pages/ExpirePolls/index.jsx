@@ -72,14 +72,20 @@ export default function ExpiredPolls({
               />
             </div>
           )}
-          <div className="arrow-container">
-            <IconButton
-              onClick={() => setShowAll(!showAll)}
-              disableTouchRipple={true}
-            >
-              {showAll ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
-            </IconButton>
-          </div>
+          {displayedUserData.length >= 6 && (
+            <div className="arrow-container">
+              <IconButton
+                onClick={() => setShowAll(!showAll)}
+                disableTouchRipple={true}
+              >
+                {showAll ? (
+                  <ArrowDropUpIcon sx={{ color: "#004f83" }} />
+                ) : (
+                  <ArrowDropDownIcon sx={{ color: "#004f83" }} />
+                )}
+              </IconButton>
+            </div>
+          )}
         </div>
       </div>
     </ExpireTableStyles>

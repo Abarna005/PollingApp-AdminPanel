@@ -36,11 +36,6 @@ export const menuItems = [
     title: "Expired Polls",
     path: PATH.EXPIREDPOLLS,
   },
-  {
-    icon: <ShoppingCart />,
-    title: "Category Requests",
-    path: PATH.CATEGORYREQUESTS,
-  },
 ];
 
 export const subItems = [

@@ -45,8 +45,6 @@ const ViewUsers = () => {
           <AccountCircleIcon className="IconStyle" />
         ),
         username: udata.name,
-        postName: "Web Developer",
-        date: "15, June",
         uid: udata.uid,
       }));
       console.log("------------", userobject);
@@ -83,7 +81,9 @@ const ViewUsers = () => {
     getUserData();
   }, []);
 
-  // const displayedUserData = ;
+  const displayedUserData = showAll
+    ? userDatafromdb
+    : userDatafromdb.slice(0, 5);
 
   return (
     <ViewUserStyles>
@@ -103,9 +103,7 @@ const ViewUsers = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {showAll
-                    ? userDatafromdb
-                    : userDatafromdb.slice(0, 5).map((userData, index) => (
+                  {displayedUserData.map((userData, index) => (
                         <TableRow key={index}>
                           <TableCell className="tabledata-row">
                             {typeof userData.picture === "string" ? (
@@ -173,16 +171,16 @@ const ViewUsers = () => {
                       ))}
                 </TableBody>
               </Table>
-              <div className="arrow-container">
-                {userDataArray.length > 5 && (
+              {userDatafromdb.length > 5 && (
+                <div className="arrow-container">
                   <StyledButton
                     onClick={() => setShowAll(!showAll)}
                     disableTouchRipple={true}
                   >
                     {showAll ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
                   </StyledButton>
-                )}
-              </div>
+                </div>
+              )}
             </TableContainer>
           ) : (
             <Box className="noreq-box">

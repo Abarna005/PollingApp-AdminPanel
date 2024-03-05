@@ -13,10 +13,10 @@ import { AccountCircle } from "@mui/icons-material";
 
 export default function BlockPolls({ showButton }) {
   const [showAll, setShowAll] = useState(false);
-  // const [reportedPolls, setReportedPolls] = useState([]);
-  const {reportedPolls,setReportedPolls}=useContext(NavContext);
+  const [reportPolls, setReportPolls] = useState([]);
+  // const {reportedPolls,setReportedPolls}=useContext(NavContext);
 
-  const displayedUserData = showAll ? reportedPolls : reportedPolls.slice(0, 6);
+  const displayedUserData = showAll ? reportPolls : reportPolls.slice(0, 6);
   // const displayedUserData = showAll ? BlockPollsDatas : BlockPollsDatas.slice(0, 6);
 
   const handleReject = (id) => {
@@ -56,14 +56,14 @@ export default function BlockPolls({ showButton }) {
     console.log(reportedpolls);
     const reportobj = reportedpolls.map((rp, index) => ({
       id: rp[0],
-      profiles: rp[1].profile?rp[1].profile:<AccountCircle/>,
+      profiles: rp[1].profile ? rp[1].profile : <AccountCircle />,
       usernames: rp[1].name,
       postnames: rp[1].category,
       block: createActionButton(rp[0], handleReject),
       msgs: Object.values(rp[1].ReportedUser),
     }));
     console.log(reportobj);
-    setReportedPolls(reportobj);
+    setReportPolls(reportobj);
   };
 
   useEffect(() => {
@@ -82,21 +82,16 @@ export default function BlockPolls({ showButton }) {
             data={displayedUserData}
             columns={BlockPollColumns}
           />
-          <div className="arrow-container">
-            <IconButton onClick={() => setShowAll(!showAll)} disableTouchRipple={true}>
-              {showAll ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
-            </IconButton>
-          </div>
-          {/* {displayedUserData.length > 6 && (
+          {displayedUserData.length >= 6 && (
             <div className="arrow-container">
               <IconButton
                 onClick={() => setShowAll(!showAll)}
                 disableTouchRipple={true}
               >
-                {showAll ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+                {showAll ? <ArrowDropUpIcon sx={{color:"#004f83"}} /> : <ArrowDropDownIcon sx={{color:"#004f83"}} />}
               </IconButton>
             </div>
-          )} */}
+          )}
         </div>
       </div>
     </BlockTableStyles>

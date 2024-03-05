@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { NavStyles } from "./style";
-import { menuItems } from "./data";
+import { menuItems, subItems } from "./data";
 import { Menu } from "@mui/icons-material";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import StyledButton from "../Buttons/index";
-import { Typography } from "@mui/material";
+import { Button, Modal, Typography } from "@mui/material";
 import PrimarySearchAppBar from "../AppHeader/index";
 import Box from "@mui/material/Box";
 import { Outlet } from "react-router-dom";
@@ -14,6 +14,21 @@ import { useLocation } from "react-router-dom";
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeButtonIndex, setActiveButtonIndex] = useState(null);
+  const [openModal, setOpenModal] = useState("");
+  const navigate = useNavigate();
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("mailId");
+    navigate("/");
+  };
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -24,8 +39,6 @@ const Sidebar = () => {
     const item = menuItems[index];
     window.location.href = item.path;
   };
-
-  const navigate = useNavigate();
 
   const handleListItemClick = (path) => {
     console.log(">>>>>>", path);
@@ -115,6 +128,44 @@ const Sidebar = () => {
                 <span className="tooltip">{item.title}</span>
               </li>
             ))}
+            {subItems.map((item, index) => (
+              <li key={index} style={{ position: "absolute", bottom: "10px" }}>
+                <StyledButton
+                  onClick={() => {
+                    handleOpenModal();
+                  }}
+                  className={activeButtonIndexs(item.path) ? "active" : ""}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        margin: "7px 15px",
+                        color: "white",
+                        fontSize: 12,
+                      }}
+                    >
+                      {item.icon}
+                    </div>
+                  </div>
+                  {isSidebarOpen && (
+                    <Typography
+                      className="title-datas"
+                      style={{ color: "white", fontSize: 12 }}
+                    >
+                      {item.title}
+                    </Typography>
+                  )}
+                </StyledButton>
+                <span className="tooltip">{item.title}</span>
+              </li>
+            ))}
           </ul>
         </div>
         <section className={`home-section ${isSidebarOpen ? "open" : ""}`}>
@@ -128,6 +179,47 @@ const Sidebar = () => {
             <Outlet />
           </Box>
         </section>
+
+        {/* logout */}
+        <Modal
+          open={openModal}
+          onClose={handleCloseModal}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "55%",
+              transform: "translate(-50%, -50%)",
+              width: 250,
+              bgcolor: "background.paper",
+              boxShadow: 24,
+              p: 4,
+              textAlign: "center",
+              borderRadius: 5,
+            }}
+          >
+            <Typography
+              id="modal-modal-title"
+              component="h2"
+              sx={{ fontSize: 16, color: "GrayText", fontWeight: 600 }}
+            >
+              Are you sure you want to log out?
+            </Typography>
+            <Button
+              onClick={handleLogout}
+              sx={{ mt: 2, mr: 2, color: "#004f83" }}
+              textTransform="none"
+            >
+              Log out
+            </Button>
+            <Button onClick={handleCloseModal} sx={{ mt: 2, color: "grey" }}>
+              Cancel
+            </Button>
+          </Box>
+        </Modal>
       </NavStyles>
     </div>
   );

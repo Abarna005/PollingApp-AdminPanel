@@ -31,12 +31,6 @@ export const RouteData = [
     isPublic:false,
   },
   {
-    title: "categoryrequests",
-    Component: CategoryRequests,
-    route: PATH.CATEGORYREQUESTS,
-    isPublic:false,
-  },
-  {
     title: "blockpolls",
     Component: BlockPolls,
     route: PATH.BLOCKPOLLS,

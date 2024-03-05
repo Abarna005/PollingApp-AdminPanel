@@ -1,6 +1,15 @@
 // Menu items
-import { Dashboard, Person, Chat, Analytics, Folder, ShoppingCart,Logout, Menu } from '@mui/icons-material';
-import {PATH} from '../../Constants/RouterConstants';
+import {
+  Dashboard,
+  Person,
+  Chat,
+  Analytics,
+  Folder,
+  ShoppingCart,
+  Logout,
+  Menu,
+} from "@mui/icons-material";
+import { PATH } from "../../Constants/RouterConstants";
 export const menuItems = [
   {
     icon: <Dashboard />,
@@ -8,12 +17,12 @@ export const menuItems = [
     path: PATH.DASHBOARD,
   },
   {
-    icon: <Chat/>,
+    icon: <Chat />,
     title: "Categories",
     path: PATH.CATEGORIES,
   },
   {
-    icon: <Person/>,
+    icon: <Person />,
     title: "Users",
     path: PATH.VIEWUSERS,
   },
@@ -27,9 +36,11 @@ export const menuItems = [
     title: "Expired Polls",
     path: PATH.EXPIREDPOLLS,
   },
+];
+
+export const subItems = [
   {
-    icon: <ShoppingCart />,
-    title: "Category Requests",
-    path: PATH.CATEGORYREQUESTS,
+    icon: <Logout />,
+    title: "Logout",
   },
 ];

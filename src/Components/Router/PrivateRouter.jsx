@@ -1,9 +1,9 @@
-// import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
-// export default function PrivateRouter() {
-//   const authData = localStorage.getItem("mailId");
+export default function PrivateRouter() {
+  const authData = localStorage.getItem("mailId");
 
-//   let auth = { token: authData ? true : false };
+  let auth = { token: authData ? true : false };
 
-//   return auth.token ? <Outlet /> : <Navigate to="/" />;
-// }
+  return auth.token ? <Outlet /> : <Navigate to="/" />;
+}

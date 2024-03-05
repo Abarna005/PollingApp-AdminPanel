@@ -19,11 +19,11 @@ export default function Routerconfig() {
                 <Route path={route} Component={Component} />
               ) : (
                 <>
-                  {/* <Route element={<PrivateRouter />}> */}
+                  <Route element={<PrivateRouter />}>
                     <Route key={route} element={<Sidebar />}>
                       <Route path={route} Component={Component} />
                     </Route>
-                  {/* </Route> */}
+                  </Route>
                   <Route path="/login" Component={<LogIn />} />
                 </>
               )}

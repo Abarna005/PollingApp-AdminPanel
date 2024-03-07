@@ -2,12 +2,11 @@
 import {
   Dashboard,
   Person,
-  Chat,
-  Analytics,
-  Folder,
-  ShoppingCart,
   Logout,
-  Menu,
+  WorkspacePremium,
+  Category,
+  Block,
+  History,
 } from "@mui/icons-material";
 import { PATH } from "../../Constants/RouterConstants";
 export const menuItems = [
@@ -17,7 +16,7 @@ export const menuItems = [
     path: PATH.DASHBOARD,
   },
   {
-    icon: <Chat />,
+    icon: <Category />,
     title: "Categories",
     path: PATH.CATEGORIES,
   },
@@ -27,12 +26,17 @@ export const menuItems = [
     path: PATH.VIEWUSERS,
   },
   {
-    icon: <Analytics />,
+    icon: <WorkspacePremium />,
+    title: "SuperUser",
+    path: PATH.SUPERUSERS,
+  },
+  {
+    icon: <Block />,
     title: "BlockPolls",
     path: PATH.BLOCKPOLLS,
   },
   {
-    icon: <ShoppingCart />,
+    icon: <History />,
     title: "Expired Polls",
     path: PATH.EXPIREDPOLLS,
   },

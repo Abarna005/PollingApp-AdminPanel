@@ -9,7 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-const CommonTable = ({ data, columns, height, width, maxWidth }) => {
+const CommonTable = ({ data, columns, height, width, maxWidth, className }) => {
   if (!data || !Array.isArray(data)) {
     // Handle the case where data is not defined or not an array
     return null;
@@ -65,6 +65,7 @@ const CommonTable = ({ data, columns, height, width, maxWidth }) => {
                       width={25}
                       style={{ borderRadius: "50%" }}
                       referrerPolicy="no-referrer"
+                      className={className}
                     />
                   ) : (
                     row[column.id]

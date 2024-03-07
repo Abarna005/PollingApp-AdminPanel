@@ -15,7 +15,7 @@ const handleAccept = (id) => {
     <div style={{ display: 'flex', alignItems: 'center',justifyContent:"center"}}>
       <Button
         onClick={() => action(id)}
-        style={{ backgroundColor: action === handleAccept ? 'green' : 'red', color: '#fff', fontWeight: 'bold', padding: '5%', width: '5vw', textAlign: 'center',fontSize:"12px" }}
+        style={{ backgroundColor: action === handleAccept ? 'green' : 'red', color: '#fff', fontWeight: 'bold', padding: '3%', width: '8vw', textAlign: 'center',fontSize:"12px" }}
       >
         {action === handleAccept ? 'Accept' : 'Reject'}
       </Button>
@@ -26,8 +26,8 @@ const handleAccept = (id) => {
 export const RequestColumns = [
     { id: 'profiles', label: 'Profiles' },
     { id: 'usernames', label: 'User names' },
-    { id: 'postnames', label: 'Post names' },
-    { id: 'accept', label: 'Accept' },
+    // { id: 'postnames', label: 'Post names' },
+    { id: 'grant', label: 'Grant' },
     { id: 'reject', label: 'Reject' },
     ];
 

@@ -124,7 +124,7 @@ export default function PrimarySearchAppBar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block',marginLeft:"1%",fontWeight:"bold"}}}
           >
-            Welcome,Admin....!
+            Welcome Admin...!
           </Typography>
           <Box sx={{ marginLeft:"75%"}} />
           <Box sx={{ display: { xs: 'none', md:"flex",gap:"5%" } }}>

@@ -2,26 +2,25 @@ import React, { useContext, useEffect, useState } from "react";
 import CommonTable from "../../Common/Tables/index";
 import { Button, IconButton, Typography } from "@mui/material";
 import { BlockTableStyles } from "./style";
-import StyledButton from "../../Common/Buttons/index";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { BlockPollColumns, BlockPollsDatas } from "./data";
 import { FetchReportedPoll } from "../../../Firebase/FetchReportedPolls/FetchReportedPoll";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { NavContext } from "../../Context";
 import { AccountCircle } from "@mui/icons-material";
 
 export default function BlockPolls({ showButton }) {
   const [showAll, setShowAll] = useState(false);
-  const [reportPolls, setReportPolls] = useState([]);
-  // const {reportedPolls,setReportedPolls}=useContext(NavContext);
+  const { reportedPolls, setReportedPolls } = useContext(NavContext);
+  const navigate = useNavigate();
 
-  const displayedUserData = showAll ? reportPolls : reportPolls.slice(0, 6);
-  // const displayedUserData = showAll ? BlockPollsDatas : BlockPollsDatas.slice(0, 6);
+  const displayedUserData = showAll ? reportedPolls : reportedPolls.slice(0, 6);
 
   const handleReject = (id) => {
     // Implement the logic for rejecting the request
     console.log(`Request with ID ${id} rejected.`);
+    navigate(`/viewreport/${id}`);
   };
 
   const createActionButton = (id, action) => (
@@ -32,22 +31,20 @@ export default function BlockPolls({ showButton }) {
         justifyContent: "center",
       }}
     >
-      <Link to={`/viewreport/${id}`} style={{ textDecoration: "none" }}>
-        <Button
-          onClick={() => action(id)}
-          style={{
-            backgroundColor: "#0963c0eb",
-            color: "#fff",
-            fontWeight: "bold",
-            padding: "3%",
-            width: "40%",
-            textAlign: "center",
-            fontSize: "12px",
-          }}
-        >
-          {action === handleReject ? "View" : "nsdf"}
-        </Button>
-      </Link>
+      <Button
+        onClick={() => action(id)}
+        style={{
+          backgroundColor: "#0963c0eb",
+          color: "#fff",
+          fontWeight: "bold",
+          padding: "3%",
+          width: "40%",
+          textAlign: "center",
+          fontSize: "12px",
+        }}
+      >
+        {action === handleReject ? "View" : "nsdf"}
+      </Button>
     </div>
   );
 
@@ -63,7 +60,7 @@ export default function BlockPolls({ showButton }) {
       msgs: Object.values(rp[1].ReportedUser),
     }));
     console.log(reportobj);
-    setReportPolls(reportobj);
+    setReportedPolls(reportobj);
   };
 
   useEffect(() => {
@@ -88,7 +85,11 @@ export default function BlockPolls({ showButton }) {
                 onClick={() => setShowAll(!showAll)}
                 disableTouchRipple={true}
               >
-                {showAll ? <ArrowDropUpIcon sx={{color:"#004f83"}} /> : <ArrowDropDownIcon sx={{color:"#004f83"}} />}
+                {showAll ? (
+                  <ArrowDropUpIcon sx={{ color: "#004f83" }} />
+                ) : (
+                  <ArrowDropDownIcon sx={{ color: "#004f83" }} />
+                )}
               </IconButton>
             </div>
           )}

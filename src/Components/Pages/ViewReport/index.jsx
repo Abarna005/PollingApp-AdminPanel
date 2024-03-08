@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { BlockPollsDatas } from "../PollsBlock/data";
 import { Box, Button, Typography } from "@mui/material";
 import ReportCard from "../../Common/ReportCard";
@@ -12,6 +12,7 @@ export default function ViewReport() {
   const { poll_id } = useParams();
   const id = poll_id;
   const { reportedPolls, setReportedPolls } = useContext(NavContext);
+  const navigate = useNavigate();
   const userdetails = reportedPolls.find((obj) => obj.id === id);
   console.log(userdetails);
 
@@ -56,18 +57,18 @@ export default function ViewReport() {
               >
                 Block
               </Button>
-              <Link to={"/blockpolls"} style={{ textDecoration: "none" }}>
-                <Button
-                  className="action-button"
-                  // onClick={() => action(id)}
-                  style={{
-                    backgroundColor: "#ccc",
-                    color: "#444",
-                  }}
-                >
-                  Cancel
-                </Button>
-              </Link>
+              <Button
+                className="action-button"
+                onClick={() => {
+                  navigate(-1);
+                }}
+                style={{
+                  backgroundColor: "#ccc",
+                  color: "#444",
+                }}
+              >
+                Cancel
+              </Button>
             </Box>
           </Col>
         </Row>
